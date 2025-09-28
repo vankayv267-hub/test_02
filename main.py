@@ -14,8 +14,8 @@ from telegram.ext import (
 # =========================
 # 🔧 CONFIG
 # =========================
-BOT_TOKEN = "YOUR_BOT_TOKEN"
-MONGO_URI = "YOUR_MONGO_URI"
+BOT_TOKEN = "6917908247:AAFaCE0R3yfd4GCwTPIoyKLczilRzXapGCI"
+MONGO_URI = "mongodb+srv://rahulmardhandaa143_db_user:HdLCMeFOFKlMjXMQ@cluster0.hssdcsh.mongodb.net/"
 REPORT_CHANNEL_ID = -1003077576672  # replace with your channel id
 CHANNEL_TO_JOIN = -1003080703906  # replace with your channel id
 
