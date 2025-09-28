@@ -1,39 +1,21 @@
 import os
 import asyncio
-from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram import Bot
 
-# Get BOT_TOKEN from environment variables
-BOT_TOKEN = "6917908247:AAFaCE0R3yfd4GCwTPIoyKLczilRzXapGCI"
+TOKEN = os.getenv("BOT_TOKEN")  # Read from environment variable
+CHANNEL_ID = "@testfortestrender"  # Your channel username or chat_id
 
-# /start command
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("👋 Hello! I’m your test bot running on Render.")
+bot = Bot(token=TOKEN)
 
-# /help command
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "📌 Available commands:\n"
-        "/start - Greet the user\n"
-        "/help - Show this help message\n"
-        "/about - Learn more about this bot"
-    )
-
-# /about command
-async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🤖 I’m a demo Telegram bot deployed on Render!")
-
-# Main entry
-async def main():
-    app = Application.builder().token(BOT_TOKEN).build()
-
-    # Add command handlers
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("about", about))
-
-    print("✅ Bot is running...")
-    await app.run_polling()
+async def send_message_every_5min():
+    while True:
+        try:
+            await bot.send_message(chat_id=CHANNEL_ID, text="Hello from Render 🚀")
+            print("Message sent successfully")
+        except Exception as e:
+            print(f"Error: {e}")
+        await asyncio.sleep(60)  # 5 minutes
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(send_message_every_5min())
+    
